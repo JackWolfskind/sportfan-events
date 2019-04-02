@@ -28,11 +28,6 @@
     <button class="hidden-sm" mat-icon-button [matMenuTriggerFor]="profile">
         <mat-icon>account_circle</mat-icon>
     </button>
-    <mat-menu *ngIf="userService.user">
-        <label>Login as: </label>
-        <img [src]="user.photoUrl">
-        <div>{{user.name}}</div>
-    </mat-menu>
     <mat-menu #profile="matMenu">
         <button mat-menu-item>
             <mat-icon>person</mat-icon>
