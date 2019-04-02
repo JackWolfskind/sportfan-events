@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
     selector: 'app-login',
@@ -7,12 +8,19 @@ import { Router } from '@angular/router';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-    constructor(private router: Router) {}
+    constructor(private router: Router,private route: ActivatedRoute) {
 
-    ngOnInit() {}
+    }
 
-    onLogin() {
-        localStorage.setItem('isLoggedin', 'true');
-        this.router.navigate(['/dashboard']);
+    public loginUrl =  "http://localhost:3000/auth/google";
+
+    ngOnInit() {
+        this.route.queryParams.subscribe(queryParams => {
+            if (queryParams['jwt']) {
+                localStorage.setItem('isLoggedin', 'true');
+                localStorage.setItem('token', queryParams['jwt']);
+                this.router.navigate(['dashboard']);
+            }    
+         });
     }
 }

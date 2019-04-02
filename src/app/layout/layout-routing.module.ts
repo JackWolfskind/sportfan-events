@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LayoutComponent } from './layout.component';
+import { AuthGuard } from '../shared/guard';
 
 const routes: Routes = [
     {
@@ -14,11 +15,13 @@ const routes: Routes = [
             },
             {
                 path: 'dashboard',
-                loadChildren: './dashboard/dashboard.module#DashboardModule'
+                loadChildren: './dashboard/dashboard.module#DashboardModule',
+                canActivate: [AuthGuard]
             },
             {
                 path: 'blank-page',
-                loadChildren: './blank-page/blank-page.module#BlankPageModule'
+                loadChildren: './blank-page/blank-page.module#BlankPageModule',
+                canActivate: [AuthGuard]
             }
         ]
     }
