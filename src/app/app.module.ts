@@ -1,6 +1,10 @@
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { LayoutModule } from '@angular/cdk/layout';
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider} from "angularx-social-login";
 import { OverlayModule } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
+import {UserService} from './service/auth/user.service';
 import {
     MatButtonModule,
     MatIconModule,
@@ -30,8 +34,7 @@ export const createTranslateLoader = (http: HttpClient) => {
 
 @NgModule({
     declarations: [AppComponent,LoginComponent],
-    imports: [
-        
+    imports: [  
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
@@ -46,7 +49,6 @@ export const createTranslateLoader = (http: HttpClient) => {
             }
         })
     ],
-    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
